@@ -1,0 +1,20 @@
+artifacts_root: artifacts
+
+data_preparation:
+  port_reviews_file: 'data/raw/port_reviews.csv'
+  amazon_reviews_file: 'data/external/amazon_book_reviews.csv'
+  final_reviews_file: 'data/processed/final_reviews.csv'
+
+prepare_base_model:
+  root_dir: 'artifacts/prepare_base_model'
+  bert_tokenizer_path: 'artifacts/prepare_base_model/bert_tokenizer.safetensors'
+  bert_model_path: 'artifacts/prepare_base_model/bert_model.safetensors'
+  sentiment_model_path: 'artifacts/prepare_base_model/sentiment_model.pth'
+
+training:
+  root_dir: 'artifacts/training'
+  trained_model_path: 'artifacts/training/trained_model.pth'
+  training_data_path: 'artifacts/data/processed/training_data.csv'
+  history_path: 'artifacts/training/history.json'
+  bert_tokenizer_path: 'artifacts/training/bert_tokenizer.safetensors'
+  test_result_path: 'artifacts/training/test_result.json'
