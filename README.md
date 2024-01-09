@@ -1,4 +1,4 @@
-# Hungarian Sentiment Analyzer
+# Hungarian Sentiment Analyser
 
 ## Overview
 This project aims to implement and train a sentiment analysis model specifically for the Hungarian language, based on the architecture proposed in [this research paper](https://doi.org/10.1016/j.array.2022.100157). Initially presented at the CINTI 2023 conference, the model has been trained on a dataset of over 300,000 reviews. This README provides a comprehensive guide to the project's structure, setup, and usage.
