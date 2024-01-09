@@ -1,18 +1,26 @@
-BERT_TOKENIZER: "SZTAKI-HLT/hubert-base-cc"
-BERT_MODEL: "SZTAKI-HLT/hubert-base-cc"
-BERT_MODEL_OUTPUT_HIDDEN_STATES: True
-BERT_TOKENIZER_DO_LOWERCASE: False
-BERT_TOKENIZER_MAX_LENGTH: 20
-CNN_KERNEL_SIZE: 3
-CNN_DILATIONS: [1,2,3]
-LSTM_N_FILTERS: 16
-LSTM_HIDDEN_DIM: 32
-LSTM_N_LAYERS: 1
-LSTM_BATCH_FIRST: True
-LSTM_BIDIRECTIONAL: True
-LINEAR_OUTPUT_DIM: 3
-DROPOUT: 0.2
-LEARNING_RATE: 0.0001
-LEARNING_RATE_SCHEDULER_GAMMA: 0.9
-EPOCH: 1
-BATCH_SIZE: 32
+data_preprocess:
+  test_size: 0.2
+  val_size: 0.1
+  random_seed: 42
+
+model:
+  cnn_kernel_size: 3
+  cnn_dilations: [1,2,3]
+  lstm_n_filters: 16
+  lstm_hidden_dim: 32
+  lstm_n_layers: 1
+  lstm_bidirectional: True
+  linear_output_dim: 3
+  dropout: 0.2
+
+training:
+  learning_rate: 0.001
+  learning_rate_gamma_value: 0.9
+  early_stopping_patience: 4
+  epoch: 1
+  batch_size: 16
+  random_seed: 42
+
+evaluation:
+  batch_size: 16
+  random_seed: 42

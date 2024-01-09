@@ -34,7 +34,7 @@ class SentimentAnalyserModel(nn.Module):
                         self.config.params_lstm_hidden_dim,
                         num_layers = self.config.params_lstm_n_layers,
                         bidirectional = self.config.params_lstm_bidirectional,
-                        batch_first = self.config.params_lstm_batch_first,
+                        batch_first = True,
                         dropout = 0 if self.config.params_lstm_n_layers < 2 else self.config.params_dropout
                         )
     
@@ -46,9 +46,9 @@ class SentimentAnalyserModel(nn.Module):
     
     def _get_hubert_model(self):
         if check_file_exists(self.config.bert_model_path):
-            model = AutoModel.from_pretrained(self.config.bert_model_path, output_hidden_states=self.config.params_bert_model_output_hidden_states)    
+            model = AutoModel.from_pretrained(self.config.bert_model_path, output_hidden_states=True)    
         else:
-            model = AutoModel.from_pretrained(self.config.params_bert_model, output_hidden_states=self.config.params_bert_model_output_hidden_states)
+            model = AutoModel.from_pretrained(self.config.bert_model_uri, output_hidden_states=True)
             model.save_pretrained(self.config.bert_model_path)
         return model
     

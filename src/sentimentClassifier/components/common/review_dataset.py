@@ -1,13 +1,15 @@
 import torch
 from torch.utils.data import Dataset
 
+import torch
+from torch.utils.data import Dataset
+
 class ReviewDataset(Dataset):
 
-    def __init__(self, review, target, tokenizer, max_len):
+    def __init__(self, review, target, tokenizer):
         self.review = review
         self.target = target
         self.tokenizer = tokenizer
-        self.max_len=max_len
 
     def __len__(self):
         return len(self.review)
@@ -16,7 +18,7 @@ class ReviewDataset(Dataset):
 
         encoding = self.tokenizer.encode_plus(
             review,
-            max_length=self.max_len,
+            max_length=512,
             add_special_tokens = True,
             padding = 'max_length',
             truncation=True,

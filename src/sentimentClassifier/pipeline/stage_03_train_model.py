@@ -16,8 +16,7 @@ class TrainingPipeline:
         sentiment_analyser_model = SentimentAnalyserModel(config=sentiment_analyser_model_config)
         trainer = Trainer(model=sentiment_analyser_model, training_config=trainer_config)
         trainer.train()
-        trainer.test()
-
+        
 if __name__ == "__main__":
     try:
         logger.info(f"************************************")

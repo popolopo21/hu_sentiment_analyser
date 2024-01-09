@@ -1,20 +1,41 @@
 artifacts_root: artifacts
 
-data_preparation:
-  port_reviews_file: 'data/raw/port_reviews.csv'
-  amazon_reviews_file: 'data/external/amazon_book_reviews.csv'
-  final_reviews_file: 'data/processed/final_reviews.csv'
+data_ingestion:
+  root_dir: artifacts/data_ingestion
+  source_URL: https://drive.google.com/file/d/1kCgJekwDeQU2FpjqCmleT-cjlFCRUxjW/view?usp=sharing
+  local_data_file: artifacts/data_ingestion/data.zip
+  unzip_dir: artifacts/data_ingestion
 
-prepare_base_model:
-  root_dir: 'artifacts/prepare_base_model'
-  bert_tokenizer_path: 'artifacts/prepare_base_model/bert_tokenizer.safetensors'
-  bert_model_path: 'artifacts/prepare_base_model/bert_model.safetensors'
-  sentiment_model_path: 'artifacts/prepare_base_model/sentiment_model.pth'
+data_preprocess:
+  root_dir: artifacts/data_preprocess
+  reviews_path: artifacts/data_ingestion/reviews.csv
+  train_path: artifacts/data_preprocess/train.csv
+  val_path: artifacts/data_preprocess/val.csv
+  test_path: artifacts/data_preprocess/test.csv  
+  emojis_path: artifacts/data_ingestion/emojis_hun.txt
+  stopwords_path: artifacts/data_ingestion/stopwords.txt
+  accepted_punctuations_path: artifacts/data_ingestion/accepted_punctuations.txt
+
+
+model:
+  root_dir: artifacts/prepare_base_model
+  bert_tokenizer_path: artifacts/prepare_base_model/bert_tokenizer.safetensors
+  bert_model_uri: SZTAKI-HLT/hubert-base-cc
+  bert_model_path: artifacts/prepare_base_model/bert_model.safetensors
+  sentiment_model_path: artifacts/prepare_base_model/sentiment_model.pth
 
 training:
-  root_dir: 'artifacts/training'
-  trained_model_path: 'artifacts/training/trained_model.pth'
-  training_data_path: 'artifacts/data/processed/training_data.csv'
-  history_path: 'artifacts/training/history.json'
-  bert_tokenizer_path: 'artifacts/training/bert_tokenizer.safetensors'
-  test_result_path: 'artifacts/training/test_result.json'
+  root_dir: artifacts/training
+  trained_model_path: artifacts/training/trained_model.pth
+  training_data_path: artifacts/data_preprocess/train.csv
+  validation_data_path: artifacts/data_preprocess/val.csv
+  history_path: artifacts/training/history.json
+  bert_tokenizer_path: artifacts/training/bert_tokenizer.safetensors
+  bert_tokenizer_uri: SZTAKI-HLT/hubert-base-cc
+  test_result_path: artifacts/training/test_result.json
+
+evaluation:
+  root_dir: artifacts/evaluation
+  trained_model_path: artifacts/training/trained_model.pth
+  test_data_path: artifacts/data_preprocess/test.csv
+  bert_tokenizer_path: artifacts/training/bert_tokenizer.safetensors

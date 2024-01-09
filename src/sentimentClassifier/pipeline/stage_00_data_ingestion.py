@@ -1,26 +1,26 @@
 from sentimentClassifier.config.configuration import ConfigurationManager
-from sentimentClassifier.components.data_preprocess import DataPreprocess
+from sentimentClassifier.components.data_ingestion import DataIngestion
 from sentimentClassifier import logger
 
-STAGE_NAME = "Data Preprocess stage"
+STAGE_NAME = "Data Ingestion stage"
 
 
-class DataPreprocessTrainingPipeline:
+class DataIngestionTrainingPipeline:
     def __init__(self):
         pass
 
     def main(self):
         config = ConfigurationManager()
-        data_preprocess_config = config.get_data_preprocess_config()
-        data_preprocess = DataPreprocess(data_preprocess_config)
-        data_preprocess.process_and_save()
-
+        data_ingestion_config = config.get_data_ingestion_config()
+        data_ingestion = DataIngestion(config=data_ingestion_config)
+        data_ingestion.download_file()
+        data_ingestion.extract_zip_file()
 
 
 if __name__ == '__main__':
     try:
         logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
-        obj = DataPreprocess()
+        obj = DataIngestionTrainingPipeline()
         obj.main()
         logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
     except Exception as e:
